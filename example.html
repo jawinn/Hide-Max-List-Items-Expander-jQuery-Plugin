@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Plugin - Auto-Hide bullet points in a list after a maximum number - Example</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="hideMaxListItem.js"></script>
+	<script type="text/javascript">
+		// Run function on both ULs and OLs
+		$(document).ready(function() {  
+			$('#content ol').hideMaxListItems();
+			$('#content ul.first').hideMaxListItems({ 'max':4, 'speed':500 }); 
+			$('#content ul.second').hideMaxListItems({ 
+				'max':6, 
+				'speed':2000, 
+				'moreHTML': '<p class="maxlist-more"><a href="#">MORE OF THEM</a></p>' 
+			}); 
+		});  
+	</script>
+</head>
+<body>
+	<h1><a href="http://www.joshuawinn.com/maximum-list-items-jquery-hide-after-x-number-bullets/">Example: jQuery Auto-Hide Maximum Number of Bullets</a></h1>
+	<div id="explain">
+		<p>This example jQuery script will automatically hide all bullet-points in a 
+		list, after the maximum number is reached. It then dynamically adds an expand/collapse link that uses the slide effect. </p>
+		<ul>
+			<li><a href="http://www.joshuawinn.com/maximum-list-items-jquery-hide-after-x-number-bullets/">How'd I get here and what does this all mean? Let me see the full blog post</a></li>
+		</ul>
+	</div>
+	
+	<div id="content">
+		<h2>OL Example: Boring Ordered List</h2>
+		<ol>
+			<li>List Item #1</li>
+			<li>List Item #2</li>
+			<li>List Item #3</li>
+			<li>List Item #4</li>
+			<li>List Item #5</li>
+			<li>List Item #6</li>
+			<li>List Item #7</li>
+			<li>List Item #8</li>
+			<li>List Item #9</li>
+		</ol>
+		<h2>UL Example: Experience and Recognition</h2>
+		<ul class="first">
+			<li>1st man to set foot on Mars wearing an undiscovered toupee</li>
+			<li>Pog Championship Winner 1994</li>
+			<li>Bullet-pointed all items in this list successfully and with a fleeting feeling of mild enjoyment.</li>
+			<li>Intermediate copy-pasting skills</li>
+			<li>Advanced right-clicking and double-clicking skills</li>
+			<li>Able to use the correct verb tense when talking about past events</li>
+			<li>Clasically trained stamp-licker</li>
+			<li>Versed in rebounding from abject failure</li>
+			<li>Creating frames-based websites on GeoCities and Tripod</li>
+			<li>Freelance sandwich inspector (2003 &ndash; present)</li>
+		</ul>
+
+		<h2>UL Example: Languages</h2>
+		<ul class="second">
+			<li>HTML</li>
+			<li>JavaScript</li>
+			<li>PHP</li>
+			<li>Whale</li>
+			<li>Marmoset</li>
+			<li>Troll</li>
+			<li>Sequoia</li>
+			<li>French Astronaut</li>
+			<li>Christopher Walkanese</li>
+			<li>Esperanto</li>
+		</ul>
+	</div>
+</body>
+</html>
