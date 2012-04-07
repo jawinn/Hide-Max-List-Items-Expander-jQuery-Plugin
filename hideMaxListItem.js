@@ -1,4 +1,5 @@
 // HIDE MAX LIST ITEMS JQUERY PLUGIN
+// Version: 1.1
 // Author: www.joshuawinn.com
 // Usage: Open Source
 (function($){
@@ -43,7 +44,7 @@ hideMaxListItems: function(options)
 			$(this).after(op.moreHTML);
 			
 			// Click events on "Read More" button: Slide up and down
-			$(this).next(".maxlist-more").children("a").click(function()
+			$(this).next(".maxlist-more").children("a").click(function(e)
 			{
 				// Get array of children past the maximum option 
 				var listElements = $(this).parent().prev("ul, ol").children("li"); 
@@ -61,6 +62,9 @@ hideMaxListItems: function(options)
 				
 				// Switch directions
 				if (goingUp == 0){goingUp = 1;} else {goingUp = 0;}
+				
+				// Prevent Default Click Behavior (Scrolling)
+				e.preventDefault();
 			});
 		}
 	});
