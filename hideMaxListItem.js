@@ -56,8 +56,7 @@ hideMaxListItems: function(options)
 				
 				// Sequentially slideToggle the list items
 				// For more info on this awesome function: http://goo.gl/dW0nM
-				if ( goingUp == 0 )
-				{
+				if ( goingUp == 0 ){
 					$(this).text(op.lessText);
 					var i = 0; 
 					(function() { $(listElements[i++] || []).slideToggle(speedPerLI,arguments.callee); })();
