@@ -1,7 +1,7 @@
 // HIDE MAX LIST ITEMS JQUERY PLUGIN
-// Version: 1.1
+// Version: 1.2
 // Author: www.joshuawinn.com
-// Usage: Open Source
+// Usage: Free and Open Source. WTFPL: http://sam.zoy.org/wtfpl/
 (function($){
 $.fn.extend({ 
 hideMaxListItems: function(options) 
@@ -10,7 +10,9 @@ hideMaxListItems: function(options)
 	var defaults = {
 		max: 3,
 		speed: 1000,
-		moreHTML:'<p class="maxlist-more"><a href="#">READ MORE</a></p>'
+		moreText:'READ MORE',
+		lessText:'READ LESS',
+		moreHTML:'<p class="maxlist-more"><a href="#"></a></p>', // requires class and child <a>
 	};
 	var options =  $.extend(defaults, options);
 	var goingUp = 0;
@@ -42,6 +44,8 @@ hideMaxListItems: function(options)
 			});
 			// Add "Read More" button
 			$(this).after(op.moreHTML);
+			// Add "Read More" text
+			$(this).next(".maxlist-more").children("a").text(op.moreText);
 			
 			// Click events on "Read More" button: Slide up and down
 			$(this).next(".maxlist-more").children("a").click(function(e)
@@ -52,16 +56,20 @@ hideMaxListItems: function(options)
 				
 				// Sequentially slideToggle the list items
 				// For more info on this awesome function: http://goo.gl/dW0nM
-				if ( goingUp == 0 ){
+				if ( goingUp == 0 )
+				{
+					$(this).text(op.lessText);
 					var i = 0; 
 					(function() { $(listElements[i++] || []).slideToggle(speedPerLI,arguments.callee); })();
-				} else {
+				} 
+				else {			
+					$(this).text(op.moreText);
 					var i = listElements.length - 1; 
 					(function() { $(listElements[i--] || []).slideToggle(speedPerLI,arguments.callee); })();
 				}
 				
 				// Switch directions
-				if (goingUp == 0){goingUp = 1;} else {goingUp = 0;}
+				goingUp = !goingUp;
 				
 				// Prevent Default Click Behavior (Scrolling)
 				e.preventDefault();
