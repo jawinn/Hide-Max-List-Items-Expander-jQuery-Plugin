@@ -1,5 +1,5 @@
 // HIDE MAX LIST ITEMS JQUERY PLUGIN
-// Version: 1.2
+// Version: 1.3
 // Author: www.joshuawinn.com
 // Usage: Free and Open Source. WTFPL: http://sam.zoy.org/wtfpl/
 (function($){
@@ -15,7 +15,6 @@ hideMaxListItems: function(options)
 		moreHTML:'<p class="maxlist-more"><a href="#"></a></p>', // requires class and child <a>
 	};
 	var options =  $.extend(defaults, options);
-	var goingUp = 0;
 	
 	// FOR EACH MATCHED ELEMENT
 	return this.each(function() {
@@ -56,7 +55,7 @@ hideMaxListItems: function(options)
 				
 				// Sequentially slideToggle the list items
 				// For more info on this awesome function: http://goo.gl/dW0nM
-				if ( goingUp == 0 ){
+				if ( $(this).text() == op.moreText ){
 					$(this).text(op.lessText);
 					var i = 0; 
 					(function() { $(listElements[i++] || []).slideToggle(speedPerLI,arguments.callee); })();
@@ -66,9 +65,6 @@ hideMaxListItems: function(options)
 					var i = listElements.length - 1; 
 					(function() { $(listElements[i--] || []).slideToggle(speedPerLI,arguments.callee); })();
 				}
-				
-				// Switch directions
-				goingUp = !goingUp;
 				
 				// Prevent Default Click Behavior (Scrolling)
 				e.preventDefault();
