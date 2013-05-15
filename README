@@ -1,9 +1,11 @@
+EXAMPLE
 Here’s a basic example:
 
 $(document).ready(function() {
     $('#elementToApplyHere').hideMaxListItems({ 'max':4 });
 });
 
+PLUGIN OPTIONS
 There are 5 available options; the maximum number of list items to show, the speed 
 of the slide animation in milliseconds, the HTML used for the expand/collapse 
 link, and the text used in this link. 
