@@ -21,3 +21,9 @@ $(document).ready(function() {
         'moreHTML': '<p class="maxlist-more"><a href="#">MORE OF THEM</a></p>'
     });
 });
+
+INCLUDE MAX ITEM COUNT
+You also have the ability to include the number of items in the moreText and lessText options.
+If you include the text "[COUNT]", it will be replaced with the number. Example:
+
+$('#selector ul').hideMaxListItems({ 'moreText':'Read More ([COUNT])' }); 
