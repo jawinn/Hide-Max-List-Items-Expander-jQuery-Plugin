@@ -1,5 +1,5 @@
 // HIDE MAX LIST ITEMS JQUERY PLUGIN
-// Version: 1.3
+// Version: 1.31
 // Author: www.joshuawinn.com
 // Usage: Free and Open Source. WTFPL: http://sam.zoy.org/wtfpl/
 (function($){
@@ -41,6 +41,12 @@ hideMaxListItems: function(options)
 					$(this).addClass('maxlist-hidden');
 				}
 			});
+			// Replace [COUNT] in "moreText" or "lessText" with number of items beyond max
+			var howManyMore = totalListItems - op.max;
+			if (howManyMore > 0){
+				op.moreText = op.moreText.replace("[COUNT]", howManyMore);
+				op.lessText = op.lessText.replace("[COUNT]", howManyMore);
+			}
 			// Add "Read More" button
 			$(this).after(op.moreHTML);
 			// Add "Read More" text
