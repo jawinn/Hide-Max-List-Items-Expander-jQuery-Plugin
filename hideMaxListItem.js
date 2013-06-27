@@ -1,5 +1,5 @@
 // HIDE MAX LIST ITEMS JQUERY PLUGIN
-// Version: 1.31
+// Version: 1.32
 // Author: www.joshuawinn.com
 // Usage: Free and Open Source. WTFPL: http://sam.zoy.org/wtfpl/
 (function($){
@@ -43,14 +43,17 @@ hideMaxListItems: function(options)
 			});
 			// Replace [COUNT] in "moreText" or "lessText" with number of items beyond max
 			var howManyMore = totalListItems - op.max;
+			var newMoreText = op.moreText;
+			var newLessText = op.lessText;
+			
 			if (howManyMore > 0){
-				op.moreText = op.moreText.replace("[COUNT]", howManyMore);
-				op.lessText = op.lessText.replace("[COUNT]", howManyMore);
+				newMoreText = newMoreText.replace("[COUNT]", howManyMore);
+				newLessText = newLessText.replace("[COUNT]", howManyMore);
 			}
 			// Add "Read More" button
 			$(this).after(op.moreHTML);
 			// Add "Read More" text
-			$(this).next(".maxlist-more").children("a").text(op.moreText);
+			$(this).next(".maxlist-more").children("a").text(newMoreText);
 			
 			// Click events on "Read More" button: Slide up and down
 			$(this).next(".maxlist-more").children("a").click(function(e)
@@ -61,13 +64,13 @@ hideMaxListItems: function(options)
 				
 				// Sequentially slideToggle the list items
 				// For more info on this awesome function: http://goo.gl/dW0nM
-				if ( $(this).text() == op.moreText ){
-					$(this).text(op.lessText);
+				if ( $(this).text() == newMoreText ){
+					$(this).text(newLessText);
 					var i = 0; 
 					(function() { $(listElements[i++] || []).slideToggle(speedPerLI,arguments.callee); })();
 				} 
 				else {			
-					$(this).text(op.moreText);
+					$(this).text(newMoreText);
 					var i = listElements.length - 1; 
 					(function() { $(listElements[i--] || []).slideToggle(speedPerLI,arguments.callee); })();
 				}
