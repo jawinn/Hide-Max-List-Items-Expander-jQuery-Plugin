@@ -1,5 +1,5 @@
 // HIDE MAX LIST ITEMS JQUERY PLUGIN
-// Version: 1.32
+// Version: 1.34
 // Author: www.joshuawinn.com
 // Usage: Free and Open Source. WTFPL: http://sam.zoy.org/wtfpl/
 (function($){
@@ -24,7 +24,7 @@ hideMaxListItems: function(options)
 		
 		// Get animation speed per LI; Divide the total speed by num of LIs. 
 		// Avoid dividing by 0 and make it at least 1 for small numbers.
-		if ( totalListItems > 0 ) { 
+		if ( totalListItems > 0 && op.speed > 0  ) { 
 			speedPerLI = Math.round( op.speed / totalListItems );
 			if ( speedPerLI < 1 ) { speedPerLI = 1; }
 		} else { 
