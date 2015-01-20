@@ -1,4 +1,4 @@
-EXAMPLE
+USAGE EXAMPLE
 Here’s a basic example:
 
 $(document).ready(function() {
@@ -19,7 +19,7 @@ $(document).ready(function() {
         'max':6,
         'speed':2000,
     	'moreText':'READ MORE',
-	'lessText':'READ LESS',
+		'lessText':'READ LESS <em>Can Use HTML</em>',
         'moreHTML': '<p class="maxlist-more"><a href="#">MORE OF THEM</a></p>'
     });
 });
