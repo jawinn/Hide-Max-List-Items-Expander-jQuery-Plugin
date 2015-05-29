@@ -4,11 +4,11 @@
 	<meta charset="UTF-8">
 	<title>jQuery Plugin - Auto-Hide bullet points in a list after a maximum number - Example</title>
 	<link rel="stylesheet" href="style.css">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="hideMaxListItem.js"></script>
 	<script type="text/javascript">
-		// Run function on both ULs and OLs
 		$(document).ready(function() {  
+			// EXAMPLE USAGE ON 3 LISTS
 			$('#content ol').hideMaxListItems();
 			$('#content ul.first').hideMaxListItems({ 'max':4, 'speed':500, 'moreText':'READ MORE ([COUNT])' });
 			$('#content ul.second').hideMaxListItems({ 
@@ -18,12 +18,24 @@
 				'lessText':'READ LESS <em>Can Use HTML</em>',
 				'moreHTML': '<div class="maxlist-more"><a href="#"></a></div>' 
 			}); 
+			// TESTING DYNAMICALLY ADDING ITEMS AND UPDATING
+			$("#dynamicAdd").on("click",function(e){
+				e.preventDefault();
+				$('#content ul.first').append('<li>DYNAMIC LIST ITEM 1</li><li>DYNAMIC LIST ITEM 2</li><li>DYNAMIC LIST ITEM 3</li>');
+				$('#content ul.first').hideMaxListItems({ 'max':4, 'speed':500, 'moreText':'READ MORE ([COUNT])' });
+					
+			});
+			$("#dynamicRemove").on("click",function(e){
+				e.preventDefault();
+				$('#content ul.first > li').not(':nth-child(1),:nth-child(2),:nth-child(3)').remove();
+				$('#content ul.first').hideMaxListItems({ 'max':4, 'speed':500, 'moreText':'READ MORE ([COUNT])' });	
+			});
 		});  
 	</script>
 </head>
 <body>
 	<h1><a href="http://www.joshuawinn.com/maximum-list-items-jquery-hide-after-x-number-bullets/">Example: jQuery Auto-Hide Maximum Number of Bullets</a></h1>
-	<div id="explain">
+	<div class="explain">
 		<p>This example jQuery script will automatically hide all bullet-points in a 
 		list, after the maximum number is reached. It then dynamically adds an expand/collapse link that uses the slide effect. </p>
 		<ul>
@@ -71,6 +83,13 @@
 			<li>Christopher Walkanese</li>
 			<li>Esperanto</li>
 		</ul>
+	</div>
+	
+	<br><br>
+	<div class="explain">
+		<p>Example of dynamically adding content:</p>
+		<p><a id="dynamicAdd" href="#"><strong>Click to Add Content to Second List</strong></a></p>
+		<p><a id="dynamicRemove" href="#"><strong>Click to Remove All But 3 Items from Second List</strong></a></p>
 	</div>
 </body>
 </html>
