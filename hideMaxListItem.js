@@ -24,6 +24,12 @@ hideMaxListItems: function(options)
 		var totalListItems = $thisList.children("li").length;
 		var speedPerLI;
 		
+		op.max 		= (($thisList.is("[data-max]")) ? $thisList.attr('data-max') : op.max);
+		op.speed 	= (($thisList.is("[data-speed]")) ? $thisList.attr('data-speed') : op.speed);
+		op.moreText 	= (($thisList.is("[data-moretext]")) ? $thisList.attr('data-moretext') : op.moreText);
+		op.lessText 	= (($thisList.is("[data-lesstext]")) ? $thisList.attr('data-lesstext') : op.lessText);
+		op.moreHTML 	= (($thisList.is("[data-morehtml]")) ? $thisList.attr('data-morehtml') : op.moreHTML);
+		
 		// Get animation speed per LI; Divide the total speed by num of LIs. 
 		// Avoid dividing by 0 and make it at least 1 for small numbers.
 		if ( totalListItems > 0 && op.speed > 0  ){ 
@@ -76,13 +82,19 @@ hideMaxListItems: function(options)
 						
 						// Sequentially slideToggle the list items
 						// For more info on this awesome function: http://goo.gl/dW0nM
-						if ( $theLink.html() == newMoreText ){
-							$(this).html(newLessText);
+						if ( !$theLink.hasClass('maxlistitems_opened') ){
+							$(this)
+							.html(newLessText)
+							.addClass('maxlistitems_opened');
+							
 							var i = 0; 
 							(function() { $(listElements[i++] || []).slideToggle(speedPerLI,arguments.callee); })();
 						} 
 						else {			
-							$theLink.html(newMoreText);
+							
+							$theLink
+							.html(newMoreText)
+							.removeClass('maxlistitems_opened');;
 							var i = listElements.length - 1; 
 							(function() { $(listElements[i--] || []).slideToggle(speedPerLI,arguments.callee); })();
 						}
